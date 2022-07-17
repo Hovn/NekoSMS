@@ -14,6 +14,16 @@
         <item>-1</item>
         <item>-2</item>
     </string-array>
+    <string-array name="pref_theme_type_entries">
+        <item>跟随系统</item>
+        <item>明亮主题</item>
+        <item>黑暗主题</item>
+    </string-array>
+    <string-array name="pref_theme_type_values">
+        <item>-1</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
     <string-array name="xposed_scope">
         <item>com.android.phone</item>
         <item>com.crossbowffs.nekosms</item>

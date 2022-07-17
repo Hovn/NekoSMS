@@ -16,15 +16,18 @@ dependencies {
     implementation("com.google.android.material:material:1.1.0-alpha09")
 
     implementation("com.crossbowffs.remotepreferences:remotepreferences:0.8")
-    compileOnly("de.robv.android.xposed:api:53")
+    //compileOnly("de.robv.android.xposed:api:53")
+    compileOnly("de.robv.android.xposed:api:82")
 }
 
 android {
     compileSdk = 31
 
+    var randomString = Math.random().toString().substring(2, 5)
     defaultConfig {
-        versionCode = 39
-        versionName = "0.20.0"
+        versionCode = 40
+        //versionName = "0.21.0"+"-R"+randomString
+        versionName = "0.21.0"+"-R"+randomString
         minSdk = 19
         targetSdk = 31
         resourceConfigurations.addAll(listOf("en", "zh-rCN", "ru"))
@@ -54,6 +57,6 @@ android {
     }
 
     lint {
-        isAbortOnError = false
+        isAbortOnError = true
     }
 }

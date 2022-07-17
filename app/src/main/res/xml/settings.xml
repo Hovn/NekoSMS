@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/pref_general">
+        <ListPreference
+            android:defaultValue="-1"
+            android:entries="@array/pref_theme_type_entries"
+            android:entryValues="@array/pref_theme_type_values"
+            android:key="pref_theme_type"
+            android:summary="%s"
+            android:title="主题" />
+
         <CheckBoxPreference
             android:key="pref_enable"
             android:title="@string/pref_enable"

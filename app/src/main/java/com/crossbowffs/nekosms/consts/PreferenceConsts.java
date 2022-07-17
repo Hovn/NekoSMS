@@ -8,6 +8,8 @@ public final class PreferenceConsts {
     public static final String FILE_INTERNAL = "internal_preferences";
     public static final String REMOTE_PREFS_AUTHORITY = NEKOSMS_PACKAGE + ".preferences";
 
+    public static final String KEY_THEME_TYPE = "pref_theme_type";
+    public static final String KEY_THEME_TYPE_DEFAULT = "-1";
     public static final String KEY_ENABLE = "pref_enable";
     public static final boolean KEY_ENABLE_DEFAULT = true;
     public static final String KEY_PRIORITY_ENABLE = "pref_priority_enable";

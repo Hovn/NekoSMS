@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -22,6 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -77,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String theme_type = PreferenceManager.getDefaultSharedPreferences(this).getString(PreferenceConsts.KEY_THEME_TYPE, PreferenceConsts.KEY_THEME_TYPE_DEFAULT);
+        AppCompatDelegate.setDefaultNightMode(Integer.parseInt(theme_type));
         setContentView(R.layout.activity_main);
         mCoordinatorLayout = (CoordinatorLayout)findViewById(R.id.main_coordinator);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.main_drawer);

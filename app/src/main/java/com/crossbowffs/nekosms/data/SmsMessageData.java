@@ -3,7 +3,10 @@ package com.crossbowffs.nekosms.data;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.telephony.SmsMessage;
+import android.telephony.SubscriptionManager;
+
 import com.crossbowffs.nekosms.provider.DatabaseContract;
 import com.crossbowffs.nekosms.utils.SmsMessageUtils;
 
@@ -25,7 +28,21 @@ public class SmsMessageData {
         String body = SmsMessageUtils.getMessageBody(messageParts);
         long timeSent = messageParts[0].getTimestampMillis();
         long timeReceived = System.currentTimeMillis();
-        int subId = SmsMessageUtils.getSubId(messageParts[0]);
+        int subId = SmsMessageUtils.getSubId(messageParts[0]);// 目测需优化，Android 11 始终为0
+
+        //高版本android，换种获取sub_id的途径
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            subId = intent.getIntExtra(SubscriptionManager.EXTRA_SUBSCRIPTION_INDEX,SubscriptionManager.INVALID_SUBSCRIPTION_ID);
+            if(subId==SubscriptionManager.INVALID_SUBSCRIPTION_ID){//不可用的subid时
+                subId=0;
+                //Xlog.v("getMessagesFromIntent with invalid subId, reset to 0");
+            }else{
+                //Xlog.v("getMessagesFromIntent with valid subId : " + subId);
+            }
+        }
+        //See https://developer.android.com/reference/android/provider/Telephony.Sms.Intents
+        //long subscription = intent.getLongExtra("subscription",0); // ???待验证
+
 
         SmsMessageData message = new SmsMessageData();
         message.setSender(Normalizer.normalize(sender, Normalizer.Form.NFC));
