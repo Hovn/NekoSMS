@@ -320,7 +320,7 @@ public class BlockedMessagesFragment extends MainFragment implements LoaderManag
         et_timereceived.setText(simpleDateFormat.format(new Date()));
 
         new AlertDialog.Builder(context)
-                .setTitle("创建测试短信")
+                .setTitle(R.string.create_test_message)
                 .setView(ll)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
