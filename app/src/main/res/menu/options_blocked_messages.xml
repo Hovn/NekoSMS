@@ -8,6 +8,10 @@
         android:title="Search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom" />
+    <!--
+    android:iconTint="#FFF"
+    android:theme="@style/AppSearchViewTheme"
+    -->
     <item
         android:id="@+id/menu_item_clear_blocked"
         android:title="@string/clear_blocked_messages"

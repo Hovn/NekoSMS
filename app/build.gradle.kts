@@ -23,11 +23,9 @@ dependencies {
 android {
     compileSdk = 31
 
-    var randomString = Math.random().toString().substring(2, 5)
     defaultConfig {
         versionCode = 40
-        //versionName = "0.21.0"+"-R"+randomString
-        versionName = "0.21.0"+"-R"+randomString
+        versionName = "0.21.0"
         minSdk = 19
         targetSdk = 31
         resourceConfigurations.addAll(listOf("en", "zh-rCN", "ru"))
@@ -39,6 +37,9 @@ android {
 
     buildTypes {
         getByName("debug") {
+            //调试的包版本名加上一个随机字串，LSPosed才会重新加载
+            //var randomString = Math.random().toString().substring(2, 5)
+            versionNameSuffix = "-dev"+Math.random().toString().substring(2, 5)
             buildConfigField("int", "LOG_LEVEL", "2")
             buildConfigField("boolean", "LOG_TO_XPOSED", "false")
         }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--这个文件定义夜间主题,暂未使用-->
+    <style name="AppNightThemeXxxx" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="alertDialogTheme">@style/AppTheme.Dialog</item>
+
+        <item name="actionModeStyle">@style/AppActionModeStyle</item>
+        <item name="toolbarStyle">@style/AppToolbarStyle</item>
+        <item name="toolbarNavigationButtonStyle">@style/AppToolbarNavigationButtonStyle</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+        <!-- 加入toolbar溢出【弹出】菜单的风格 -->
+        <!--actionMode 三点菜单的弹出主题-->
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
+    </style>
+
+</resources>

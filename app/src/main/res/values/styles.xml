@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--Theme.AppCompat.NoActionBar-->
+    <!--Theme.AppCompat.DayNight.NoActionBar-->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
@@ -13,11 +13,18 @@
         <item name="toolbarStyle">@style/AppToolbarStyle</item>
         <item name="toolbarNavigationButtonStyle">@style/AppToolbarNavigationButtonStyle</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+        <!-- 加入toolbar溢出【弹出】菜单的风格 -->
+
+        <!--actionMode 三点菜单的弹出主题，必须要，不然默认是黑色背景的-->
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
+
     </style>
     <!--夜间模式，可能会先闪过一个白色页面才进入夜间模式。解决办法如下：去掉默认的窗口背景色-->
     <!--<item name="android:windowBackground">@null</item>-->
 
-    <!--<item name="actionButtonStyle">@style/AppActionButtonStyle</item>-->
+    <!--尝试<item name="actionButtonStyle">@style/AppActionButtonStyle</item>-->
+    <!--尝试<item name="searchViewStyle">@style/SearchViewStyle</item>-->
 
 
     <!--Theme.AppCompat.Dialog.Alert-->
@@ -28,14 +35,15 @@
     <style name="AppActionModeStyle" parent="@style/Widget.AppCompat.ActionMode">
         <item name="background">@color/primary</item>
     </style>
+    <!--<item name="titleTextStyle">@style/Theme.app.ActionMode.Title</item>-->
 
     <!--标题与NavigationIcon的距离-->
     <style name="AppToolbarStyle" parent="Widget.AppCompat.Toolbar">
         <item name="contentInsetStart">0dp</item>
         <item name="contentInsetStartWithNavigation">0dp</item>
         <item name="titleTextAppearance">@style/AppToolbarStyle.TitleText</item>
-
     </style>
+    <!--<item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>-->
 
     <!--Toolbar标题文字大小-->
     <style name="AppToolbarStyle.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
@@ -49,8 +57,43 @@
         <item name="android:scaleType">centerInside</item>
         <item name="android:color">#ffffff</item>
     </style>
+
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <item name="color">#ffffff</item>
     </style>
 
+    <!--未使用-->
+    <!--parent=""-->
+    <style name="SearchViewStyle" parent="@style/Widget.AppCompat.SearchView">
+        <item name="android:colorForeground">#FFFFFF</item>
+        <item name="colorControlNormal">#FFFFFF</item>
+        <item name="colorButtonNormal">#FFFFFF</item>
+    </style>
+
+    <style name="ActionModeTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionMode.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <!--@style/Widget.AppCompat.PopupMenu.Overflow   未测试作为父主题时的效果？？？-->
+    <!--溢出[弹出]菜单样式 parent相当于继承【可以不要parent】-->
+    <style name="ToolbarOverflowMenuStyle" parent="@style/ThemeOverlay.AppCompat.Light">
+        <!-- 是否覆盖锚点，默认为true，即盖住Toolbar -->
+        <item name="overlapAnchor">true</item>
+    </style>
+
+    <!--溢出[弹出]菜单样式 parent相当于继承【可以不要parent】-->
+    <style name="ToolbarOverflowMenuStyle.Custom">
+        <!-- 是否覆盖锚点，默认为true，即盖住Toolbar -->
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownWidth">wrap_content</item>
+        <item name="android:paddingRight">5dp</item>
+        <!-- 弹出层背景颜色 -->
+        <item name="android:popupBackground">#FFF</item>
+        <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
+        <item name="android:dropDownVerticalOffset">5dp</item>
+        <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
+        <item name="android:dropDownHorizontalOffset">0dp</item>
+        <!-- 设置弹出菜单文字颜色 -->
+        <item name="android:textColor">#000</item>
+    </style>
 </resources>
