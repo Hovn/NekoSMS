@@ -26,7 +26,7 @@ android {
     defaultConfig {
         versionCode = 40
         versionName = "0.21.0"
-        minSdk = 19
+        minSdk = 21
         targetSdk = 31
         resourceConfigurations.addAll(listOf("en", "zh-rCN", "ru"))
         buildConfigField("int", "MODULE_VERSION", "18")
