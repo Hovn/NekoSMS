@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -22,8 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -46,7 +43,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppBaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String EXTRA_SECTION = "section";
     public static final String EXTRA_SECTION_LIST_RULES = "list_rules";
     public static final String EXTRA_SECTION_BLOCKED_MESSAGES = "blocked_messages";
@@ -79,8 +76,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String theme_type = PreferenceManager.getDefaultSharedPreferences(this).getString(PreferenceConsts.KEY_THEME_TYPE, PreferenceConsts.KEY_THEME_TYPE_DEFAULT);
-        AppCompatDelegate.setDefaultNightMode(Integer.parseInt(theme_type));
         setContentView(R.layout.activity_main);
         mCoordinatorLayout = (CoordinatorLayout)findViewById(R.id.main_coordinator);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.main_drawer);
@@ -397,7 +392,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         new AlertDialog.Builder(this)
             .setTitle(R.string.task_killer_title)
             .setMessage(message)
-            .setIcon(R.drawable.ic_warning_white_24dp)
+            .setIcon(R.drawable.ic_baseline_warning_24)
             .setPositiveButton(R.string.task_killer_ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -431,7 +426,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         new AlertDialog.Builder(this)
             .setTitle(R.string.module_outdated_title)
             .setMessage(R.string.module_outdated_message)
-            .setIcon(R.drawable.ic_warning_white_24dp)
+            .setIcon(R.drawable.ic_baseline_warning_24)
             .setPositiveButton(R.string.reboot, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

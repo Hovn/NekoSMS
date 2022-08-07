@@ -4,6 +4,25 @@
     <item type="color" name="primary_dark">#303f9f</item>
     <item type="color" name="accent">#ff4081</item>
     <item type="color" name="main">#4d6697</item>
+
+    <item type="color" name="shortcut_fg">#4D6697</item>
     <item type="color" name="shortcut_bg">#f5f5f5</item>
+
     <item type="color" name="launcher_bg">#4d6697</item>
+
+    <item type="color" name="black">@android:color/black</item>
+    <item type="color" name="white">@android:color/white</item>
+    <item type="color" name="transparent">@android:color/transparent</item>
+
+    <item type="color" name="ic_default_fg">?android:attr/colorForeground</item>
+    <item type="color" name="ic_accent_fg">?attr/colorAccent</item>
+    <!--android:tint="?android:attr/colorForeground"-->
+    <!--android:tint="?android:attr/colorAccent"-->
+    <!--android:tint="?attr/colorAccent"-->
+
+    <!--    menu_icon_fg-->
+    <!--    drawer_icon_fg-->
+    <!--    fab_icon_fg-->
+    <!--    notification_icon_fg-->
+    <!--    dialog_icon_fg-->
 </resources>

@@ -76,7 +76,7 @@ public class FilterRulesFragment
         registerForContextMenu(mRecyclerView);
 
         // Display create FAB
-        enableFab(R.drawable.ic_create_white_24dp, new View.OnClickListener() {
+        enableFab(R.drawable.ic_baseline_add_24, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), FilterEditorActivity.class);
@@ -211,7 +211,7 @@ public class FilterRulesFragment
 
     private void showConfirmImportDialog(final Uri uri) {
         new AlertDialog.Builder(getContext())
-            .setIcon(R.drawable.ic_warning_white_24dp)
+            .setIcon(R.drawable.ic_baseline_warning_24)
             .setTitle(R.string.import_confirm_title)
             .setMessage(R.string.import_confirm_message)
             .setPositiveButton(R.string.backup_button_import, new DialogInterface.OnClickListener() {

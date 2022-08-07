@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.crossbowffs.nekosms.BuildConfig;
 import com.crossbowffs.nekosms.R;
 import com.crossbowffs.nekosms.consts.PreferenceConsts;
@@ -18,40 +20,35 @@ public class SettingsFragment extends PreferenceFragment {
 
         // General settings
         addPreferencesFromResource(R.xml.settings);
+        // Notification settings
+        addPreferencesFromResource(R.xml.settings_notifications);
+
+        //相关特殊处理
         if (!XposedUtils.isModuleEnabled()) {
             Preference enablePreference = findPreference(PreferenceConsts.KEY_ENABLE);
             enablePreference.setEnabled(false);
             enablePreference.setSummary(R.string.pref_enable_summary_alt);
         }
 
-//        // Theme settings
-//        ListPreference themePreference = (ListPreference) findPreference(PreferenceConsts.KEY_THEME_TYPE);
-//        themePreference.setSummary(themePreference.getEntry());
-//        themePreference.setOnPreferenceChangeListener((preference, newValue) -> {
-//            ListPreference listPreference = (ListPreference) preference;
-//            int index = listPreference.findIndexOfValue(newValue.toString());
-//            // Set the summary to reflect the new value.
-//            preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
-//            return true;
-//        });
+        //切换主题
+        findPreference(PreferenceConsts.KEY_THEME_TYPE).setOnPreferenceChangeListener((preference, newValue) -> {
+            //int theme_type_value=Integer.parseInt((String) newValue);
+            int theme_type_value=AppBaseActivity.ThemeEnum.valueOf(newValue.toString()).value;
 
-//        // Notification settings
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            addPreferencesFromResource(R.xml.settings_notifications_v26);
-//            Preference settingsPreference = findPreference(PreferenceConsts.KEY_NOTIFICATIONS_OPEN_SETTINGS);
-//            settingsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-//                @Override
-//                public boolean onPreferenceClick(Preference preference) {
-//                    Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-//                    intent.putExtra(Settings.EXTRA_APP_PACKAGE, NEKOSMS_PACKAGE);
-//                    startActivity(intent);
-//                    return true;
-//                }
-//            });
-//        } else {
-//            addPreferencesFromResource(R.xml.settings_notifications);
-//        }
-        addPreferencesFromResource(R.xml.settings_notifications);
+            //方式1-建议
+            AppCompatDelegate.setDefaultNightMode(theme_type_value);
+
+            //方式2
+            //AppBaseActivity AppActivity = (AppBaseActivity) getActivity();
+            //AppActivity.getDelegate().setLocalNightMode(theme_type_value);
+            //AppActivity.getDelegate().applyDayNight();//该句可以不用
+
+            //方式3
+            //AppActivity.recreate();
+            //getActivity().recreate();
+            return true; //true表示上级的监听器可以继续处理；false反之。
+        });
+
     }
 
     @Override

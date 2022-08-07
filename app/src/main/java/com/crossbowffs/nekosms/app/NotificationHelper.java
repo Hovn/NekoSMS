@@ -10,10 +10,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
-import android.text.TextUtils;
+
 import com.crossbowffs.nekosms.R;
 import com.crossbowffs.nekosms.consts.BroadcastConsts;
 import com.crossbowffs.nekosms.consts.PreferenceConsts;
@@ -87,13 +89,13 @@ public final class NotificationHelper {
         PendingIntent dismissIntent = createPendingIntent(context, BroadcastConsts.ACTION_DISMISS_NOTIFICATION, uri);
 
         return new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL)
-            .setSmallIcon(R.drawable.ic_message_blocked_white_24dp)
+            .setSmallIcon(R.drawable.ic_baseline_speaker_notes_off_24)
             .setContentTitle(context.getString(R.string.format_notification_single_sender, messageData.getSender()))
             .setContentText(messageData.getBody())
             .setStyle(new NotificationCompat.BigTextStyle().bigText(messageData.getBody()))
             .setContentIntent(viewPendingIntent)
-            .addAction(R.drawable.ic_delete_white_24dp, context.getString(R.string.delete), deleteIntent)
-            .addAction(R.drawable.ic_unarchive_white_24dp, context.getString(R.string.restore), restoreIntent)
+            .addAction(R.drawable.ic_baseline_delete_24, context.getString(R.string.delete), deleteIntent)
+            .addAction(R.drawable.ic_baseline_unarchive_24, context.getString(R.string.restore), restoreIntent)
             .setDeleteIntent(dismissIntent)
             .setCategory(NotificationCompat.CATEGORY_MESSAGE)
             .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)

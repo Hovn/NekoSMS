@@ -172,7 +172,12 @@ public class BlockedMessagesFragment extends MainFragment implements LoaderManag
         inflater.inflate(R.menu.options_debug, menu);
         searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
 
-        searchView.setMaxWidth(500);
+        //DisplayMetrics displayMetrics = new DisplayMetrics();
+        //getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        //int screen_px = displayMetrics.widthPixels;
+
+        //搜索框使用一半的屏幕宽度
+        searchView.setMaxWidth(getContext().getResources().getDisplayMetrics().widthPixels/2);
         searchView.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -262,7 +267,7 @@ public class BlockedMessagesFragment extends MainFragment implements LoaderManag
         if (context == null) return;
 
         new AlertDialog.Builder(context)
-            .setIcon(R.drawable.ic_warning_white_24dp)
+            .setIcon(R.drawable.ic_baseline_warning_24)
             .setTitle(R.string.confirm_clear_messages_title)
             .setMessage(R.string.confirm_clear_messages_message)
             .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {

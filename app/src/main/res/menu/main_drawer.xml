@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/main_drawer_list_rules"
-        android:icon="@drawable/ic_rule_folder_white_24dp"
+        android:icon="@drawable/ic_baseline_rule_folder_24"
         android:checkable="true"
         android:title="@string/list_rules"/>
     <item
         android:id="@+id/main_drawer_blocked_messages"
-        android:icon="@drawable/ic_message_white_24dp"
+        android:icon="@drawable/ic_baseline_message_24"
         android:checkable="true"
         android:title="@string/blocked_messages"/>
     <item
         android:id="@+id/main_drawer_settings"
-        android:icon="@drawable/ic_settings_white_24dp"
+        android:icon="@drawable/ic_baseline_settings_24"
         android:checkable="true"
         android:title="@string/settings"/>
     <item
         android:id="@+id/main_drawer_about"
-        android:icon="@drawable/ic_help_white_24dp"
+        android:icon="@drawable/ic_baseline_help_24"
         android:checkable="false"
         android:title="@string/about"/>
 </menu>

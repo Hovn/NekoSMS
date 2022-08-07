@@ -102,7 +102,7 @@
     <string name="must_enable_xposed_module">需要启用Xposed模块</string>
     <string name="clear_blocked_messages">清空页面信息</string>
     <string name="confirm_clear_messages_title">删除所有信息？</string>
-    <string name="confirm_clear_messages_message">将删除页面上展示的所有信息，信息被删除后永远无法恢复！</string>
+    <string name="confirm_clear_messages_message">将删除页面上展示的所有信息（搜索结果），信息被删除后永远无法恢复！</string>
     <string name="cleared_blocked_messages">已删除所有信息</string>
     <string name="message_deleted">信息已删除</string>
     <string name="message_multi_deleted">%1$d条信息已删除</string>
@@ -175,6 +175,10 @@
     <string name="pref_notifications_priority_min">最低</string>
     <string name="pref_notifications_open_settings">通知设置</string>
     <string name="pref_notifications_open_settings_summary">点击此处打开通知设置</string>
+    <string name="pref_theme_type">主题</string>
+    <string name="pref_theme_type_system">跟随系统</string>
+    <string name="pref_theme_type_light">明亮主题</string>
+    <string name="pref_theme_type_dark">黑暗主题</string>
 
     <!-- Notifications -->
     <string name="format_notification_single_sender">%s</string>

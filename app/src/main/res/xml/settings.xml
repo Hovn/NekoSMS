@@ -2,12 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/pref_general">
         <ListPreference
-            android:defaultValue="-1"
+            android:defaultValue="SYSTEM"
             android:entries="@array/pref_theme_type_entries"
-            android:entryValues="@array/pref_theme_type_values"
+            android:entryValues="@array/pref_theme_type_names"
             android:key="pref_theme_type"
             android:summary="%s"
-            android:title="主题" />
+            android:title="@string/pref_theme_type" />
 
         <CheckBoxPreference
             android:key="pref_enable"

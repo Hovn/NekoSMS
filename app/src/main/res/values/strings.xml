@@ -175,6 +175,10 @@
     <string name="pref_notifications_priority_min">Very low</string>
     <string name="pref_notifications_open_settings">Notification settings</string>
     <string name="pref_notifications_open_settings_summary">Click to open notification settings</string>
+    <string name="pref_theme_type">Theme</string>
+    <string name="pref_theme_type_system">System</string>
+    <string name="pref_theme_type_light">Light</string>
+    <string name="pref_theme_type_dark">Dark</string>
 
     <!-- Notifications -->
     <string name="format_notification_single_sender">%s (blocked)</string>

@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
@@ -25,7 +24,7 @@ import com.crossbowffs.nekosms.loader.FilterRuleLoader;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-public class FilterEditorActivity extends AppCompatActivity {
+public class FilterEditorActivity extends AppBaseActivity {
     public static final String EXTRA_ACTION = "action";
     private Toolbar mToolbar;
     private FrameLayout mFrameLayout;
@@ -66,7 +65,7 @@ public class FilterEditorActivity extends AppCompatActivity {
 
         // Set up toolbar 现在使用radioButton 来区分黑白名单
         mToolbar.setTitle(getString(R.string.filter_editor));
-        mToolbar.setNavigationIcon(R.drawable.ic_done_white_24dp);
+        mToolbar.setNavigationIcon(R.drawable.ic_baseline_done_24);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -189,7 +188,7 @@ public class FilterEditorActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
             .setTitle(R.string.invalid_pattern_title)
             .setMessage(errorMessage)
-            .setIcon(R.drawable.ic_warning_white_24dp)
+            .setIcon(R.drawable.ic_baseline_warning_24)
             .setPositiveButton(R.string.ok, null)
             .show();
     }

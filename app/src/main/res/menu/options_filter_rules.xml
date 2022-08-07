@@ -5,6 +5,6 @@
     <item
         android:id="@+id/menu_item_import_export_filters"
         android:title="@string/import_export"
-        android:icon="@drawable/ic_import_export_file_white_24dp"
+        android:icon="@drawable/ic_baseline_import_export_24"
         app:showAsAction="ifRoom"/>
 </menu>

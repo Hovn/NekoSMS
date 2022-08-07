@@ -15,6 +15,8 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
 
         <!-- 加入toolbar溢出【弹出】菜单的风格 -->
+        <!--有一些其他效果,背景貌似得用下边那个-->
+        <item name="actionOverflowMenuStyle">@style/ToolbarOverflowMenuStyle</item>
 
         <!--actionMode 三点菜单的弹出主题，必须要，不然默认是黑色背景的-->
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
@@ -74,11 +76,14 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <!--@style/Widget.AppCompat.PopupMenu.Overflow   未测试作为父主题时的效果？？？-->
+    <!--parent="@style/Widget.AppCompat.PopupMenu.Overflow"  效果可行-->
+    <!--parent="@style/Widget.AppCompat.Light.PopupMenu.Overflow"  效果可行-->
+    <!--parent="@style/ThemeOverlay.AppCompat.DayNight"  效果不好-->
+    <!--toolbar菜单默认样式的父类为Widget.AppCompat.Light.PopupMenu.Overflow-->
     <!--溢出[弹出]菜单样式 parent相当于继承【可以不要parent】-->
-    <style name="ToolbarOverflowMenuStyle" parent="@style/ThemeOverlay.AppCompat.Light">
+    <style name="ToolbarOverflowMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
         <!-- 是否覆盖锚点，默认为true，即盖住Toolbar -->
-        <item name="overlapAnchor">true</item>
+        <item name="overlapAnchor">false</item>
     </style>
 
     <!--溢出[弹出]菜单样式 parent相当于继承【可以不要parent】-->
@@ -95,5 +100,8 @@
         <item name="android:dropDownHorizontalOffset">0dp</item>
         <!-- 设置弹出菜单文字颜色 -->
         <item name="android:textColor">#000</item>
+
+        <item name="android:layout_marginRight">4dp</item>
     </style>
+
 </resources>

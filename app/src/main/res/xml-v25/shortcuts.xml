@@ -3,7 +3,7 @@
     <shortcut
         android:shortcutId="view_blocked_messages"
         android:enabled="true"
-        android:icon="@mipmap/ic_messages_shortcut"
+        android:icon="@mipmap/ic_shortcut_blocked_message"
         android:shortcutShortLabel="@string/shortcut_blocked_messages">
         <intent
             android:action="android.intent.action.VIEW"
@@ -15,7 +15,7 @@
     <shortcut
         android:shortcutId="create_rulelist_rule"
         android:enabled="true"
-        android:icon="@mipmap/ic_add_rule_shortcut"
+        android:icon="@mipmap/ic_shortcut_add_rule"
         android:shortcutShortLabel="@string/shortcut_new_rulelist_rule">
         <intent
             android:action="android.intent.action.VIEW"
