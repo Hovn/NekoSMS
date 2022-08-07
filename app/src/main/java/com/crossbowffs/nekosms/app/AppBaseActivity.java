@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Window;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +34,10 @@ public abstract class AppBaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.d("AppBaseActivity", "onCreate");
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        getWindow().setAllowEnterTransitionOverlap(false);
+        getWindow().setAllowReturnTransitionOverlap(false);
         super.onCreate(savedInstanceState);
         //设置日间/夜间模式
         //AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM     //-1
@@ -44,7 +49,17 @@ public abstract class AppBaseActivity extends AppCompatActivity {
 
         String theme_type_name = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(PreferenceConsts.KEY_THEME_TYPE, PreferenceConsts.KEY_THEME_TYPE_DEFAULT);
-        int theme_type_value=AppBaseActivity.ThemeEnum.valueOf(theme_type_name).value;
+
+        //方式1，通过valueOf取得 theme_type_value。根据theme_type_name找不到的话会抛出异常。
+        //int theme_type_value=AppBaseActivity.ThemeEnum.valueOf(theme_type_name).value;
+
+        //方式2，通过for遍历取得 theme_type_value。因为改过theme_type_name的值，故用遍历的方式，可以先提前设个默认的。
+        int theme_type_value=AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+        for(ThemeEnum themeEnum:ThemeEnum.values()){
+            if(themeEnum.name.equals(theme_type_name)){
+                theme_type_value=themeEnum.value;
+            }
+        }
         AppCompatDelegate.setDefaultNightMode(theme_type_value);
     }
 

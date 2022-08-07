@@ -20,6 +20,7 @@ import com.crossbowffs.nekosms.data.SmsFilterField;
 import com.crossbowffs.nekosms.data.SmsFilterMode;
 import com.crossbowffs.nekosms.data.SmsFilterPatternData;
 import com.crossbowffs.nekosms.loader.FilterRuleLoader;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -28,15 +29,36 @@ public class FilterEditorActivity extends AppBaseActivity {
     public static final String EXTRA_ACTION = "action";
     private Toolbar mToolbar;
     private FrameLayout mFrameLayout;
+    private FloatingActionButton mFloatingActionButton;
     private Uri mFilterUri;
     private SmsFilterData mFilter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //进入动画。从xml或code加载
+        //Fade fade = TransitionInflater.from(this).inflateTransition(R.transition.activity_fade);
+        //getWindow().setEnterTransition(fade);
+        //getWindow().setEnterTransition(new Fade(Fade.IN).setDuration(500));
+        //getWindow().setEnterTransition(new Fade().setDuration(500));
+//        getWindow().setExitTransition(
+//                //new Slide(Gravity.LEFT)
+//                new Fade()
+//                        .setDuration(500)
+//                        .excludeTarget(android.R.id.statusBarBackground, true)
+//                        //.excludeTarget(R.id.toolbar,true)
+//                        .excludeTarget(R.id.main_fab, true)
+//                        .excludeTarget(R.id.fab_add_rule_done, true)
+//        );
+
+        //返回动画。不定义的话默认是 进入动画的反向
+        //getWindow().setReturnTransition(new Slide().setDuration(1000));
+
         setContentView(R.layout.activity_filter_editor);
         mToolbar = (Toolbar)findViewById(R.id.toolbar);
         mFrameLayout = (FrameLayout)findViewById(R.id.editor_content);
+        mFloatingActionButton = (FloatingActionButton)findViewById(R.id.fab_add_rule_done);
+        mFloatingActionButton.setOnClickListener(v -> saveIfValid());
 
         // Process intent for modifying existing filter if it exists
         mFilterUri = getIntent().getData();
@@ -65,7 +87,7 @@ public class FilterEditorActivity extends AppBaseActivity {
 
         // Set up toolbar 现在使用radioButton 来区分黑白名单
         mToolbar.setTitle(getString(R.string.filter_editor));
-        mToolbar.setNavigationIcon(R.drawable.ic_baseline_done_24);
+        //mToolbar.setNavigationIcon(R.drawable.ic_baseline_done_24);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

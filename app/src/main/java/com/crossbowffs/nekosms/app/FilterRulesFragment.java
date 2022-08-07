@@ -2,6 +2,7 @@ package com.crossbowffs.nekosms.app;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.CursorLoader;
@@ -81,7 +82,30 @@ public class FilterRulesFragment
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), FilterEditorActivity.class);
                 //intent.putExtra(FilterEditorActivity.EXTRA_ACTION, null);
-                startActivity(intent);
+                //startActivity(intent);
+                //getMainActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+                //退出动画
+                //Slide slide = TransitionInflater.from(getContext()).inflateTransition(R.transition.activity_slide);
+//                getActivity().getWindow().setExitTransition(
+//                        //new Slide(Gravity.LEFT)
+//                        new Fade()
+//                                .setDuration(500)
+//                                .excludeTarget(android.R.id.statusBarBackground, true)
+//                                //.excludeTarget(R.id.toolbar,true)
+//                                .excludeTarget(R.id.main_fab, true)
+//                                .excludeTarget(R.id.fab_add_rule_done, true)
+//                );
+                //getActivity().getWindow().setExitTransition(new Fade().setDuration(500));
+
+                //返回到动画。不定义则默认为退出动画的反向
+                //getActivity().getWindow().setReenterTransition(new Slide().setDuration(1000));
+
+                ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(getActivity());
+                startActivity(intent,transitionActivityOptions.toBundle());
+
+                //TransitionManager.beginDelayedTransition(mRecyclerView, new Slide(Gravity.RIGHT).setDuration(3000));
+                //TransitionManager.beginDelayedTransition(mRecyclerView, new Fade().setDuration(3000));
             }
         });
         
