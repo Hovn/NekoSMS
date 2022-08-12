@@ -58,7 +58,7 @@ public abstract class AutoContentLoader<T> {
         return queryAll(context, null, null, null);
     }
 
-    protected CursorWrapper<T> queryAll(Context context, String where, String[] whereArgs, String orderBy) {
+    public CursorWrapper<T> queryAll(Context context, String where, String[] whereArgs, String orderBy) {
         ContentResolver contentResolver = context.getContentResolver();
         Cursor cursor = contentResolver.query(getContentUri(), mColumnNames, where, whereArgs, orderBy);
         return wrapCursor(cursor);

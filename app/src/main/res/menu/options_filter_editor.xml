@@ -6,5 +6,11 @@
         android:id="@+id/menu_item_discard_changes"
         android:icon="@drawable/ic_baseline_close_24"
         android:title="@string/discard_changes"
+        android:visible="false"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_item_save"
+        android:icon="@drawable/ic_baseline_done_24"
+        android:title="@string/save_rule"
         app:showAsAction="ifRoom"/>
 </menu>

@@ -29,18 +29,22 @@
             android:text="@string/whitelist_rules" />
     </RadioGroup>
 
+<!--    app:boxBackgroundColor="#FFF"-->
+<!--    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filter_editor_pattern_inputlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
-        <!--com.google.android.material.textfield.TextInputEditText  在某些手机（魅族Android 6/7）上会崩溃，可使用 AppCompatEditText 代替 -->
-        <androidx.appcompat.widget.AppCompatEditText
+        <!--com.google.android.material.textfield.TextInputEditText  在某些手机（魅族Android 6/7）上会崩溃，
+        可使用 androidx.appcompat.widget.AppCompatEditText 代替 -->
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/filter_editor_pattern_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/filter_pattern_sender" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <TableLayout
         android:layout_width="match_parent"

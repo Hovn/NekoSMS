@@ -40,7 +40,8 @@ import com.crossbowffs.nekosms.utils.Xlog;
             FilterRules.SENDER_CASE_SENSITIVE   + " INTEGER, " +
             FilterRules.BODY_MODE               + " TEXT, " +
             FilterRules.BODY_PATTERN            + " TEXT, " +
-            FilterRules.BODY_CASE_SENSITIVE     + " INTEGER" +
+            FilterRules.BODY_CASE_SENSITIVE     + " INTEGER, " +
+            FilterRules.PRIORITY                + " INTEGER NOT NULL DEFAULT 0" +
         ");";
 
     public DatabaseHelper(Context context) {
@@ -64,6 +65,10 @@ import com.crossbowffs.nekosms.utils.Xlog;
             upgrade9To11(db);
         } else if (oldVersion == 10) {
             upgrade10To11(db);
+        }
+
+        if(oldVersion<12){
+            upgradeTo12(db);
         }
     }
 
@@ -152,8 +157,20 @@ import com.crossbowffs.nekosms.utils.Xlog;
 
     private void upgrade10To11(SQLiteDatabase db) {
         db.execSQL(
-            "ALTER TABLE " + BlockedMessages.TABLE +
-            " ADD COLUMN " + BlockedMessages.SUB_ID + " INTEGER NOT NULL" +
-            " DEFAULT 0");
+                "ALTER TABLE " + BlockedMessages.TABLE +
+                        " ADD COLUMN " + BlockedMessages.SUB_ID + " INTEGER NOT NULL" +
+                        " DEFAULT 0");
+    }
+
+    private void upgradeTo12(SQLiteDatabase db) {
+        db.execSQL(
+                "ALTER TABLE " + FilterRules.TABLE +
+                        " ADD COLUMN " + FilterRules.PRIORITY + " INTEGER NOT NULL" +
+                        " DEFAULT 0");
+
+        //将 -1*ID 的赋给 PRIORITY；原先ID小的优先级高，现在PRIORITY大的优先级高。
+        db.execSQL(
+                "UPDATE " + FilterRules.TABLE + " SET " + FilterRules.PRIORITY + "=-1*"+FilterRules._ID   );
+
     }
 }

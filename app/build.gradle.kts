@@ -13,6 +13,7 @@ dependencies {
     // enough to have the disappearing icon bug fixed but old enough to not have the
     // broken snackbar/FAB animation that was added in 1.1.0-alpha10.
     // See: https://github.com/material-components/material-components-android/issues/1036
+    //implementation("com.google.android.material:material:1.1.0-alpha09")
     implementation("com.google.android.material:material:1.1.0-alpha09")
 
     implementation("com.crossbowffs.remotepreferences:remotepreferences:0.8")
@@ -30,7 +31,7 @@ android {
         targetSdk = 31
         resourceConfigurations.addAll(listOf("en", "zh-rCN", "ru"))
         buildConfigField("int", "MODULE_VERSION", "18")
-        buildConfigField("int", "DATABASE_VERSION", "11")
+        buildConfigField("int", "DATABASE_VERSION", "12")
         buildConfigField("int", "BACKUP_VERSION", "3")
         buildConfigField("String", "LOG_TAG", "\"NekoSMS\"")
     }
@@ -59,5 +60,6 @@ android {
 
     lint {
         isAbortOnError = true
+        //disable("NonConstantResourceId")//禁用switch-case 使用 id 的警告
     }
 }

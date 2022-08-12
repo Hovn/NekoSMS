@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_action_move_up"
+        android:icon="@drawable/ic_baseline_vertical_align_top_24"
+        android:title="向上移动"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_action_move_down"
+        android:icon="@drawable/ic_baseline_vertical_align_bottom_24"
+        android:title="向下移动"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_action_delete"
+        android:icon="@drawable/ic_baseline_delete_24"
+        android:title="@string/delete"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_action_all_select"
+        android:title="@string/select_all"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_action_inv_select"
+        android:title="@string/select_invert"
+        app:showAsAction="never"/>
+
+</menu>

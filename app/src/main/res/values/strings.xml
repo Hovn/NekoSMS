@@ -84,6 +84,7 @@
 
     <!-- Filter rule editor -->
     <string name="filter_editor">Filter rule editor</string>
+    <string name="save_rule">Save rule</string>
     <string name="save_blacklist_rule">Save blacklist rule</string>
     <string name="save_whitelist_rule">Save whitelist rule</string>
     <string name="discard_changes">Discard changes</string>
@@ -108,6 +109,8 @@
     <string name="message_multi_deleted">%1$d Message deleted</string>
     <string name="message_multi_selected">%1$d Message selected</string>
     <string name="message_multi_restored">%1$d Message restored</string>
+    <string name="message_multi_readed">%1$d条信息已读</string>
+    <string name="item_multi_selected">Selected: %1$d</string>
 
     <string name="message_restored">Message restored to inbox</string>
     <string name="message_restore_failed">Message could not be restored</string>
@@ -192,4 +195,5 @@
 
     <!-- Debug stuff -->
     <string name="create_test_message">Create test message</string>
+    <string name="add">Add</string>
 </resources>

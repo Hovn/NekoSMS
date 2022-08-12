@@ -84,6 +84,7 @@
 
     <!-- Filter rule editor -->
     <string name="filter_editor">Редактирование правила</string>
+    <string name="save_rule">Save rule</string>
     <string name="save_blacklist_rule">Сохранить в чёрный список</string>
     <string name="save_whitelist_rule">Сохранить в белый список</string>
     <string name="discard_changes">Отменить изменения</string>
@@ -108,6 +109,8 @@
     <string name="message_multi_deleted">%1$d Message deleted</string>
     <string name="message_multi_selected">%1$d Message selected</string>
     <string name="message_multi_restored">%1$d Message restored</string>
+    <string name="message_multi_readed">%1$d条信息已读</string>
+    <string name="item_multi_selected">Selected: %1$d</string>
 
     <string name="message_restored">Сообщение восстановлено в приложение SMS</string>
     <string name="message_restore_failed">Сообщение не может быть восстановлено</string>
@@ -191,4 +194,5 @@
 
     <!-- Debug stuff -->
     <string name="create_test_message">Тестовое сообщение</string>
+    <string name="add">Add</string>
 </resources>

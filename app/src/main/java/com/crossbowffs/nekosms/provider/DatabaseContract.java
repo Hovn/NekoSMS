@@ -3,6 +3,7 @@ package com.crossbowffs.nekosms.provider;
 import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
+
 import com.crossbowffs.nekosms.BuildConfig;
 
 public final class DatabaseContract {
@@ -47,6 +48,7 @@ public final class DatabaseContract {
         public static final String BODY_MODE = "body_mode";
         public static final String BODY_PATTERN = "body_pattern";
         public static final String BODY_CASE_SENSITIVE = "body_case_sensitive";
+        public static final String PRIORITY = "priority";
         public static final String[] ALL = {
             _ID,
             ACTION,
@@ -56,6 +58,7 @@ public final class DatabaseContract {
             BODY_MODE,
             BODY_PATTERN,
             BODY_CASE_SENSITIVE,
+            PRIORITY,
         };
     }
 }

@@ -94,7 +94,31 @@ public class MainActivity extends AppBaseActivity implements NavigationView.OnNa
 
         // Setup navigation drawer
         mNavigationView.setNavigationItemSelectedListener(this);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open_drawer, R.string.close_drawer);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open_drawer, R.string.close_drawer){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                setTitle(R.string.app_name);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                String title = getString(R.string.app_name);
+                switch (mContentSection){
+                    case EXTRA_SECTION_LIST_RULES:
+                        title = getString(R.string.list_rules);
+                        break;
+                    case EXTRA_SECTION_BLOCKED_MESSAGES:
+                        title = getString(R.string.blocked_messages_whith_num,((BlockedMessagesFragment)mContentFragment).getAdapter().getItemCount());
+                        break;
+                    case EXTRA_SECTION_SETTINGS:
+                        title = getString(R.string.settings);
+                        break;
+                }
+                setTitle(title);
+            }
+        };
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
@@ -117,6 +141,12 @@ public class MainActivity extends AppBaseActivity implements NavigationView.OnNa
                 return;
             }
 
+            // Set the section that was selected previously
+            String section = mInternalPrefs.getString(PreferenceConsts.KEY_SELECTED_SECTION, EXTRA_SECTION_LIST_RULES);
+            setContentSection(section);
+
+            // 如果是开发版本，不提示相关弹框，方便调试
+            if(BuildConfig.DEBUG) return;
             // Show info dialogs as necessary
             if (!XposedUtils.isModuleEnabled()) {
                 if (XposedUtils.isXposedInstalled(this)) {
@@ -131,10 +161,6 @@ public class MainActivity extends AppBaseActivity implements NavigationView.OnNa
             } else {
                 showTaskKillerDialogIfNecessary();
             }
-
-            // Set the section that was selected previously
-            String section = mInternalPrefs.getString(PreferenceConsts.KEY_SELECTED_SECTION, EXTRA_SECTION_LIST_RULES);
-            setContentSection(section);
         }
     }
 
@@ -293,10 +319,25 @@ public class MainActivity extends AppBaseActivity implements NavigationView.OnNa
         mFloatingActionButton.setOnClickListener(listener);
         mFloatingActionButton.show();
     }
-
     public void disableFab() {
         mFloatingActionButton.setOnClickListener(null);
         mFloatingActionButton.hide();
+    }
+    public void showFab() {
+        mFloatingActionButton.show();
+    }
+    public void hideFab() {
+        mFloatingActionButton.hide();
+    }
+    public void showFab(boolean isShow) {
+        if (isShow) {
+            mFloatingActionButton.show();
+        } else {
+            mFloatingActionButton.hide();
+        }
+    }
+    public FloatingActionButton getFloatingActionButton(){
+        return mFloatingActionButton;
     }
 
     public Snackbar makeSnackbar(int textId) {
@@ -448,6 +489,7 @@ public class MainActivity extends AppBaseActivity implements NavigationView.OnNa
             .show();
 
         TextView textView = (TextView)dialog.findViewById(android.R.id.message);
+        assert textView != null;
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

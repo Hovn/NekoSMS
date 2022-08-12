@@ -36,6 +36,9 @@ public abstract class RecyclerCursorAdapter<VH extends RecyclerView.ViewHolder> 
         }
     }
 
+
+    //        SmsFilterData filterData = FilterRuleLoader.get().getData(cursor, getColumns(), holder.mFilterData);
+
     public Set<Long> getAllItemId() {
         Set<Long> ids = new HashSet();
         if (mCursor == null) {
@@ -67,6 +70,13 @@ public abstract class RecyclerCursorAdapter<VH extends RecyclerView.ViewHolder> 
 
     protected abstract void onBindViewHolder(VH vh, Cursor cursor);
 
+    @Deprecated
+    public Cursor getCursor() {
+        return mCursor;
+    }
+
+    // Adapter 的 mCursor 从哪来？
+    // 从 FilterRulesFragment等 的 onLoadFinished() 中来，会调用到这里
     public void changeCursor(Cursor cursor) {
         Cursor oldCursor = swapCursor(cursor);
         if (oldCursor != null) {

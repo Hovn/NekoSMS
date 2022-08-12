@@ -82,6 +82,7 @@ public abstract class AppBaseActivity extends AppCompatActivity {
         Log.d("AppBaseActivity", "onConfigurationChanged");
         super.onConfigurationChanged(newConfig);
 
+        //切换主题后进行重启操作，带动画
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         startActivity(getIntent());

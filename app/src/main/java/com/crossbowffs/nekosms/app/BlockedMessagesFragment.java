@@ -59,6 +59,12 @@ public class BlockedMessagesFragment extends MainFragment implements LoaderManag
 
     private ListRecyclerView mRecyclerView;
     private View mEmptyView;
+
+    @Deprecated //给MainActivity.mDrawerToggle.onDrawerClosed()设置title用
+    public BlockedMessagesAdapter getAdapter() {
+        return mAdapter;
+    }
+
     private BlockedMessagesAdapter mAdapter;
 
     private ActionMode actionMode;
@@ -130,7 +136,8 @@ public class BlockedMessagesFragment extends MainFragment implements LoaderManag
                 if (actionMode == null) {
                     actionMode = getMainActivity().startSupportActionMode(BlockedMessagesFragment.this);
                 }
-                return false;
+                addOrRemove(msg_data.getId());
+                return true;
             }
         });
     }
@@ -528,11 +535,11 @@ public class BlockedMessagesFragment extends MainFragment implements LoaderManag
         }
 
         ContentValues values = MapUtils.contentValuesForSize(2);
-        values.put(DatabaseContract.BlockedMessages.READ,  1 );
+        values.put(DatabaseContract.BlockedMessages.READ, 1);
         values.put(DatabaseContract.BlockedMessages.SEEN, 1);
         //批量已读
         int num = BlockedSmsLoader.get().update(context, values,DatabaseContract.BlockedMessages._ID + " in("+ids_str+")", null);
-        //showSnackbar(getString(R.string.xxx, num));
+        showSnackbar(getString(R.string.message_multi_readed, num));
     }
 
     private void createTestSms(String sender,String body,String str_subid,String sendDate,String receivedDate) {

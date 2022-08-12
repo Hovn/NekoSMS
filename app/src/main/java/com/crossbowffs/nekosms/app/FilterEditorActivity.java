@@ -59,6 +59,7 @@ public class FilterEditorActivity extends AppBaseActivity {
         mFrameLayout = (FrameLayout)findViewById(R.id.editor_content);
         mFloatingActionButton = (FloatingActionButton)findViewById(R.id.fab_add_rule_done);
         mFloatingActionButton.setOnClickListener(v -> saveIfValid());
+        mFloatingActionButton.hide();
 
         // Process intent for modifying existing filter if it exists
         mFilterUri = getIntent().getData();
@@ -68,6 +69,7 @@ public class FilterEditorActivity extends AppBaseActivity {
             mFilter = new SmsFilterData();
             SmsFilterAction action = getAction();
             mFilter.setAction(action);
+            mFilter.setPriority(FilterRuleLoader.get().queryMaxPriority(this)+1);
         }
 
         // Initialize empty patterns with some reasonable default values
@@ -106,7 +108,10 @@ public class FilterEditorActivity extends AppBaseActivity {
 
     @Override
     public void onBackPressed() {
-        saveIfValid();
+        //saveIfValid();
+
+        //判断是否需要弹框提醒保存
+        discardAndFinish();
     }
 
     @Override
@@ -119,14 +124,21 @@ public class FilterEditorActivity extends AppBaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            saveIfValid();
-            return true;
-        case R.id.menu_item_discard_changes:
-            discardAndFinish();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case android.R.id.home:
+                //saveIfValid();
+
+                //直接返回上一级
+                discardAndFinish();
+                return true;
+            case R.id.menu_item_discard_changes:
+                discardAndFinish();
+                //saveIfValid();
+                return true;
+            case R.id.menu_item_save:
+                saveIfValid();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

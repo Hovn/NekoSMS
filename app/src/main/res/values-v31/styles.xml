@@ -3,7 +3,7 @@
     <!--Theme.AppCompat.NoActionBar-->
     <!--Theme.AppCompat.DayNight.NoActionBar-->
     <!--Theme.MaterialComponents.DayNight.NoActionBar-->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
@@ -13,14 +13,14 @@
         <item name="actionModeStyle">@style/AppActionModeStyle</item>
         <item name="toolbarStyle">@style/AppToolbarStyle</item>
         <item name="toolbarNavigationButtonStyle">@style/AppToolbarNavigationButtonStyle</item>
-        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+<!--        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
 
         <!-- 加入toolbar溢出【弹出】菜单的风格 -->
         <!--有一些其他效果,背景貌似得用下边那个-->
         <item name="actionOverflowMenuStyle">@style/ToolbarOverflowMenuStyle</item>
 
         <!--actionMode 三点菜单的弹出主题，必须要，不然默认是黑色背景的-->
-        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
 
     </style>
     <!--夜间模式，可能会先闪过一个白色页面才进入夜间模式。解决办法如下：去掉默认的窗口背景色-->
@@ -33,7 +33,7 @@
     <!--Theme.AppCompat.Dialog.Alert-->
     <!--Theme.AppCompat.DayNight.Dialog.Alert-->
     <!--Theme.MaterialComponents.DayNight.Dialog.Alert-->
-    <style name="AppTheme.Dialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+    <style name="AppTheme.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
         <item name="colorAccent">@color/accent</item>
     </style>
 
@@ -84,14 +84,14 @@
     <!--parent="@style/ThemeOverlay.AppCompat.DayNight"  效果不好-->
     <!--toolbar菜单默认样式的父类为Widget.AppCompat.Light.PopupMenu.Overflow-->
     <!--溢出[弹出]菜单样式 parent相当于继承【可以不要parent】-->
-    <style name="ToolbarOverflowMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+    <style name="ToolbarOverflowMenuStyle" parent="@style/Widget.MaterialComponents.PopupMenu.Overflow">
         <!-- 是否覆盖锚点，默认为true，即盖住Toolbar -->
         <item name="overlapAnchor">false</item>
     </style>
-    <style name="ToolbarOverflowMenuPopupStyle" parent="@style/ThemeOverlay.AppCompat.DayNight">
+    <style name="ToolbarOverflowMenuPopupStyle" parent="@style/ThemeOverlay.MaterialComponents.Light">
     </style>
 
-    <style name="ToolbarOverlayStyle" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="ToolbarOverlayStyle" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
     </style>
 
     <!--溢出[弹出]菜单样式 parent相当于继承【可以不要parent】-->

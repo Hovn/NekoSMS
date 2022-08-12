@@ -8,6 +8,7 @@
     android:longClickable="true"
     android:orientation="vertical"
     android:padding="10dp">
+    <!--?android:selectableItemBackground-->
 
     <TextView
         android:id="@+id/filter_rule_action_info_textview"

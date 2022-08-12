@@ -63,6 +63,7 @@
         </activity>
         <activity
             android:name=".app.FilterEditorActivity"
+            android:windowSoftInputMode="adjustResize"
             android:label="@string/filter_editor"
             android:exported="false">
         </activity>

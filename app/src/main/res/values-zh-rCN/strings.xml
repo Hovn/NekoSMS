@@ -21,7 +21,7 @@
     <string name="select_invert">反选</string>
 
     <!-- Navigation drawer -->
-    <string name="open_drawer">扩展导航抽屉</string>
+    <string name="open_drawer">打开导航抽屉</string>
     <string name="close_drawer">隐藏导航抽屉</string>
 
     <!-- Import/export -->
@@ -84,6 +84,7 @@
 
     <!-- Filter rule editor -->
     <string name="filter_editor">过滤规则编辑器</string>
+    <string name="save_rule">保存规则</string>
     <string name="save_blacklist_rule">保存黑名单规则</string>
     <string name="save_whitelist_rule">保存白名单规则</string>
     <string name="discard_changes">放弃更改</string>
@@ -108,6 +109,8 @@
     <string name="message_multi_deleted">%1$d条信息已删除</string>
     <string name="message_multi_selected">%1$d条信息已选择</string>
     <string name="message_multi_restored">%1$d条信息已恢复</string>
+    <string name="message_multi_readed">%1$d条信息已读</string>
+    <string name="item_multi_selected">已选择：%1$d</string>
 
     <string name="message_restored">信息已恢复到收件箱</string>
     <string name="message_restore_failed">无法恢复信息</string>
@@ -192,4 +195,5 @@
 
     <!-- Debug stuff -->
     <string name="create_test_message">创建测试信息</string>
+    <string name="add">增加</string>
 </resources>

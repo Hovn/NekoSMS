@@ -2,6 +2,7 @@ package com.crossbowffs.nekosms.data;
 
 import android.content.ContentUris;
 import android.net.Uri;
+
 import com.crossbowffs.nekosms.provider.DatabaseContract;
 
 public class SmsFilterData {
@@ -10,11 +11,14 @@ public class SmsFilterData {
     private final SmsFilterPatternData mSenderPattern = new SmsFilterPatternData(SmsFilterField.SENDER);
     private final SmsFilterPatternData mBodyPattern = new SmsFilterPatternData(SmsFilterField.BODY);
 
+    private int mPriority = 0;
+
     public void reset() {
         mId = -1;
         mAction = null;
         mSenderPattern.reset();
         mBodyPattern.reset();
+        mPriority = 0;
     }
 
     public SmsFilterData setId(long id) {
@@ -24,6 +28,14 @@ public class SmsFilterData {
 
     public long getId() {
         return mId;
+    }
+
+    public int getPriority() {
+        return mPriority;
+    }
+
+    public void setPriority(int mPriority) {
+        this.mPriority = mPriority;
     }
 
     public SmsFilterData setAction(SmsFilterAction action) {
@@ -68,7 +80,17 @@ public class SmsFilterData {
             "id=" + mId +
             ", action=" + mAction +
             ", senderPattern=" + mSenderPattern +
-            ", bodyPattern=" + mBodyPattern +
+                ", bodyPattern=" + mBodyPattern +
+                ", priority=" + mPriority +
             "}";
+    }
+
+    @Override
+    public boolean equals(Object data){
+        if(data instanceof SmsFilterData){
+            return mId==((SmsFilterData) data).getId();
+        }
+        //return super.equals(data);
+        return false;
     }
 }

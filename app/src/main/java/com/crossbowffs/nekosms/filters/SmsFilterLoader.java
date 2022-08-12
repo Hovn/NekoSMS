@@ -74,9 +74,10 @@ public class SmsFilterLoader {
             Xlog.i("Cached SMS filters dirty, loading from database");
             RemotePreferences mPreferences = new RemotePreferences(mContext, PreferenceConsts.REMOTE_PREFS_AUTHORITY, PreferenceConsts.FILE_MAIN, true);
             if (mPreferences.getBoolean(PreferenceConsts.KEY_PRIORITY_ENABLE, PreferenceConsts.KEY_PRIORITY_DEFAULT)) {
-                filters = mCachedFilters = loadFiltersByPriority();
+                filters = mCachedFilters = loadFilters(DatabaseContract.FilterRules.PRIORITY+" DESC");
             } else {
-                filters = mCachedFilters = loadFilters();
+                //filters = mCachedFilters = loadFilters_Old();
+                filters = mCachedFilters = loadFilters(DatabaseContract.FilterRules.ACTION+" ASC");
             }
         }
         return filters;
@@ -86,7 +87,8 @@ public class SmsFilterLoader {
         mCachedFilters = null;
     }
 
-    private List<SmsFilter> loadFilters() {
+    //原作者的方法，白名单优先
+    private List<SmsFilter> loadFilters_Old() {
         try (CursorWrapper<SmsFilterData> filterCursor = FilterRuleLoader.get().queryAll(mContext)) {
             if (filterCursor == null) {
                 // This might occur if the app has been uninstalled (removing the DB),
@@ -134,8 +136,9 @@ public class SmsFilterLoader {
         }
     }
 
-    private List<SmsFilter> loadFiltersByPriority() {
-        try (CursorWrapper<SmsFilterData> filterCursor = FilterRuleLoader.get().queryAll(mContext)) {
+    //按action或priority排序。 根据orderBy来对原始查询进行排序
+    private List<SmsFilter> loadFilters(String orderBy) {
+        try (CursorWrapper<SmsFilterData> filterCursor = FilterRuleLoader.get().queryAll(mContext,null,null, orderBy)) {
             if (filterCursor == null) {
                 // This might occur if the app has been uninstalled (removing the DB),
                 // but the user has not rebooted their device yet. We should not filter
@@ -152,7 +155,7 @@ public class SmsFilterLoader {
             // be merged into the whitelist list in the end (with
             // whitelist rules coming first).
 
-            // 按照_id顺序作为优先级
+            // (之前)按照_id顺序作为优先级，现在有专门的 PRIORITY 字段了
             ArrayList<SmsFilter> rulelist = new ArrayList<>(count);
 
             SmsFilterData data = new SmsFilterData();
