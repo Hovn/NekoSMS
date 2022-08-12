@@ -39,6 +39,8 @@ import com.crossbowffs.nekosms.utils.Xlog;
 import com.crossbowffs.nekosms.widget.DialogAsyncTask;
 import com.crossbowffs.nekosms.widget.ListRecyclerView;
 
+import java.util.List;
+
 public class FilterRulesFragment extends MainFragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
         ActionMode.Callback,
@@ -199,8 +201,11 @@ public class FilterRulesFragment extends MainFragment implements
             case R.id.menu_item_import_export_filters:
                 showImportExportDialog();
                 return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case R.id.menu_item_optimize_priority_filters:
+                optimizePriorityDialog();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
     private void jumpToFilterEditorActivity() {
@@ -279,18 +284,35 @@ public class FilterRulesFragment extends MainFragment implements
     private void showImportExportDialog() {
         CharSequence[] items = {getString(R.string.import_from_storage), getString(R.string.export_to_storage)};
         new AlertDialog.Builder(getContext())
-            .setTitle(R.string.import_export)
-            .setItems(items, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+                .setTitle(R.string.import_export)
+                .setItems(items, (dialog, which) -> {
                     if (which == 0) {
                         startActivityForResult(BackupLoader.getImportFilePickerIntent(), IMPORT_BACKUP_REQUEST);
                     } else if (which == 1) {
                         startActivityForResult(BackupLoader.getExportFilePickerIntent(), EXPORT_BACKUP_REQUEST);
                     }
-                }
-            })
-            .show();
+                })
+                .show();
+    }
+
+    private void optimizePriorityDialog() {
+        new AlertDialog.Builder(getContext())
+                .setTitle(R.string.optimize_priority)
+                .setMessage("当发现移动条目出现一些奇怪现象时，可能是由于优先级字段（priority）出现了重复值。例如导入了版本3及以下的备份文件。\n" +
+                        "此时需要进行修复，将对所有条目的优先级进行重新计算并排序！\n" +
+                        "执行此操作不会对正常的列表造成影响，所以无论何时，你可以放心的执行此操作。")
+                .setPositiveButton("开始", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        List<SmsFilterData> all = mAdapter.getAllItem();
+                        for (int i = 0, j = all.size()-1; i <all.size() ; i++, j--) {
+                            SmsFilterData data = all.get(i);
+                            data.setPriority(j);
+                            FilterRuleLoader.get().update(getContext(), data.getUri(), data, false);
+                        }
+                    }
+                })
+                .show();
     }
 
     private void showConfirmImportDialog(final Uri uri) {

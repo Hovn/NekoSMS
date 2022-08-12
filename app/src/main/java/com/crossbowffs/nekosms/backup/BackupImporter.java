@@ -1,12 +1,16 @@
 package com.crossbowffs.nekosms.backup;
 
 import android.content.Context;
+
 import com.crossbowffs.nekosms.utils.IOUtils;
 import com.crossbowffs.nekosms.utils.Xlog;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStream;
 
 /* package */ class BackupImporter implements Closeable {
     private final InputStream mJsonStream;
@@ -43,6 +47,8 @@ import java.io.*;
             delegate = new BackupImporterDelegate2(context);
         } else if (version == 3) {
             delegate = new BackupImporterDelegate3(context);
+        } else if (version == 4) {
+            delegate = new BackupImporterDelegate4(context);
         } else {
             throw new BackupVersionException("Unknown backup version: " + version);
         }

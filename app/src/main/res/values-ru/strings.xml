@@ -195,4 +195,5 @@
     <!-- Debug stuff -->
     <string name="create_test_message">Тестовое сообщение</string>
     <string name="add">Add</string>
+    <string name="optimize_priority">Optimize Priority</string>
 </resources>

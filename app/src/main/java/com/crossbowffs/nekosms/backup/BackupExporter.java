@@ -2,13 +2,18 @@ package com.crossbowffs.nekosms.backup;
 
 import android.content.Context;
 import android.util.JsonWriter;
+
 import com.crossbowffs.nekosms.BuildConfig;
 import com.crossbowffs.nekosms.data.SmsFilterData;
 import com.crossbowffs.nekosms.data.SmsFilterPatternData;
-import com.crossbowffs.nekosms.widget.CursorWrapper;
 import com.crossbowffs.nekosms.loader.FilterRuleLoader;
+import com.crossbowffs.nekosms.widget.CursorWrapper;
 
-import java.io.*;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 
 /* package */ class BackupExporter implements Closeable {
     private static final int BACKUP_VERSION = BuildConfig.BACKUP_VERSION;
@@ -58,6 +63,7 @@ import java.io.*;
             mJsonWriter.name(BackupConsts.KEY_FILTER_BODY);
             writeFilterPattern(bodyPattern);
         }
+        mJsonWriter.name(BackupConsts.KEY_FILTER_PRIORITY).value(filterData.getPriority());
         mJsonWriter.endObject();
     }
 

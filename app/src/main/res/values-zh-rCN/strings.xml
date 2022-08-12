@@ -196,4 +196,5 @@
     <!-- Debug stuff -->
     <string name="create_test_message">创建测试信息</string>
     <string name="add">增加</string>
+    <string name="optimize_priority">修复优先级</string>
 </resources>

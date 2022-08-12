@@ -32,7 +32,7 @@ android {
         resourceConfigurations.addAll(listOf("en", "zh-rCN", "ru"))
         buildConfigField("int", "MODULE_VERSION", "18")
         buildConfigField("int", "DATABASE_VERSION", "13")
-        buildConfigField("int", "BACKUP_VERSION", "3")
+        buildConfigField("int", "BACKUP_VERSION", "4")
         buildConfigField("String", "LOG_TAG", "\"NekoSMS\"")
     }
 

@@ -9,6 +9,7 @@ package com.crossbowffs.nekosms.backup;
     public static final String KEY_FILTER_MODE = "mode";
     public static final String KEY_FILTER_PATTERN = "pattern";
     public static final String KEY_FILTER_CASE_SENSITIVE = "case_sensitive";
+    public static final String KEY_FILTER_PRIORITY = "priority";
 
     private BackupConsts() { }
 }

@@ -393,6 +393,25 @@ public class FilterRuleLoader extends AutoContentLoader<SmsFilterData> {
         }
     }
 
+    public Uri update(Context context, long _id, SmsFilterData filterData, boolean insertIfError) {
+        Uri filterUri = convertIdToUri(_id);
+        if (filterUri == null && insertIfError) {
+            return insert(context, filterData);
+        } else if (filterUri == null) {
+            throw new IllegalArgumentException("No filter URI provided, failed to write new filter");
+        }
+
+        boolean updated = update(context, filterUri, serialize(filterData));
+        if (!updated && insertIfError) {
+            return insert(context, filterData);
+        } else if (!updated) {
+            Xlog.w("Filter does not exist, failed to update");
+            return null;
+        } else {
+            return filterUri;
+        }
+    }
+
     public SmsFilterData queryAndDelete(Context context, long messageId) {
         Uri filterUri = convertIdToUri(messageId);
         SmsFilterData filterData = query(context, filterUri);
