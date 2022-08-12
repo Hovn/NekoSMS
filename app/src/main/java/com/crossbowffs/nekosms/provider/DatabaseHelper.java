@@ -70,6 +70,9 @@ import com.crossbowffs.nekosms.utils.Xlog;
         if(oldVersion<12){
             upgradeTo12(db);
         }
+        if(oldVersion<13){
+            upgradeTo13(db);
+        }
     }
 
     private void upgradePre8(SQLiteDatabase db) {
@@ -172,5 +175,19 @@ import com.crossbowffs.nekosms.utils.Xlog;
         db.execSQL(
                 "UPDATE " + FilterRules.TABLE + " SET " + FilterRules.PRIORITY + "=-1*"+FilterRules._ID   );
 
+    }
+
+    private void upgradeTo13(SQLiteDatabase db) {
+        //修改原表的名称：ALTER TABLE table RENAME TO tableOld;
+        db.execSQL("ALTER TABLE " + FilterRules.TABLE + " RENAME TO " + FilterRules.TABLE + "_old");
+
+        //新建修改字段后的表：CREATE TABLE table(ID INTEGER PRIMARY KEY AUTOINCREMENT, Modify_Username text not null);
+        db.execSQL(CREATE_FILTER_RULES_TABLE);
+
+        //从旧表中查询出数据并插入新表：INSERT INTO table SELECT ID,Username FROM tableOld;
+        db.execSQL("INSERT INTO " + FilterRules.TABLE + " SELECT * FROM " + FilterRules.TABLE + "_old");
+
+        //删除旧表：DROP TABLE tableOld;
+        db.execSQL("DROP TABLE " + FilterRules.TABLE + "_old");
     }
 }
