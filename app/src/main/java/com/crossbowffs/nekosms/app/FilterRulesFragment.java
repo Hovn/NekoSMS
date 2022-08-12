@@ -463,7 +463,13 @@ public class FilterRulesFragment extends MainFragment implements
                 }
                 return true;
             case R.id.menu_action_delete:
-                deleteSelectedFilters();
+                new AlertDialog.Builder(getContext())
+                        .setTitle("警告")
+                        .setMessage("删除后无法恢复，确认？")
+                        .setNegativeButton("我再想想", null)
+                        .setPositiveButton("确定删除", (dialog, which) -> deleteSelectedFilters())
+                        .show();
+                //deleteSelectedFilters();
                 //mode.finish();
                 return true;
             case R.id.menu_action_all_select:// 全选
