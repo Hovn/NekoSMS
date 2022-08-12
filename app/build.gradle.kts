@@ -40,7 +40,7 @@ android {
         getByName("debug") {
             //调试的包版本名加上一个随机字串，LSPosed才会重新加载
             //var randomString = Math.random().toString().substring(2, 5)
-            versionNameSuffix = "-dev"+Math.random().toString().substring(2, 5)
+            versionNameSuffix = "-"+Math.random().toString().substring(2, 5)
             buildConfigField("int", "LOG_LEVEL", "2")
             buildConfigField("boolean", "LOG_TO_XPOSED", "false")
         }

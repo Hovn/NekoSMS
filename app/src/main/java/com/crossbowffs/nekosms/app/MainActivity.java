@@ -483,7 +483,7 @@ public class MainActivity extends AppBaseActivity implements NavigationView.OnNa
             GITHUB_URL, WIKI_URL));
 
         AlertDialog dialog = new AlertDialog.Builder(this)
-            .setTitle(getString(R.string.app_name) + ' ' + VERSION_NAME )
+            .setTitle(getString(R.string.app_name) + ' ' + VERSION_NAME+"("+BuildConfig.BUILD_TYPE+")" )
             .setMessage(html)
             .setPositiveButton(R.string.close, null)
             .show();
